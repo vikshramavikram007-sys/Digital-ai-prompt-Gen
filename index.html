@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital AI Prompt Generator</title>
-  <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-  </script>
+
   <style>
     :root {
       --primary: #0056ff;
@@ -19,7 +17,7 @@
       --transition: 0.3s ease;
     }
 
-    * { box-sizing: border-box; scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
 
     body {
       font-family: "Poppins", sans-serif;
@@ -29,7 +27,6 @@
       line-height: 1.6;
     }
 
-    /* Header */
     header {
       background: var(--card);
       box-shadow: var(--shadow);
@@ -43,7 +40,7 @@
       flex-wrap: wrap;
     }
 
-    header h1 { color: var(--primary); font-size: 1.4rem; margin: 0; flex: 1; }
+    header h1 { color: var(--primary); font-size: 1.4rem; margin: 0; }
 
     nav ul {
       list-style: none;
@@ -52,19 +49,14 @@
       margin: 0;
       padding: 0;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
     nav a {
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
-      transition: color var(--transition);
     }
 
-    nav a:hover { color: var(--primary); }
-
-    /* Generator */
     main {
       display: flex;
       justify-content: center;
@@ -83,11 +75,7 @@
       text-align: center;
     }
 
-    h2 {
-      color: var(--primary);
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-    }
+    h2 { color: var(--primary); }
 
     .input-area {
       display: flex;
@@ -108,10 +96,7 @@
       color: #fff;
       cursor: pointer;
       border: none;
-      transition: background var(--transition);
     }
-
-    button:hover { background: #003fcc; }
 
     .output-card {
       margin-top: 1.5rem;
@@ -125,9 +110,9 @@
 
     .button-row {
       display: flex;
-      flex-wrap: wrap;
       gap: 1rem;
       margin-top: 1rem;
+      flex-wrap: wrap;
     }
 
     .toast {
@@ -139,38 +124,12 @@
       color: white;
       padding: 0.8rem 1.2rem;
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
       opacity: 0;
-      transition: opacity 0.3s ease-in-out;
+      transition: 0.3s;
       font-size: 0.9rem;
     }
 
     .toast.show { opacity: 1; }
-
-    /* Sections */
-    section {
-      max-width: 900px;
-      margin: 3rem auto;
-      background: var(--card);
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    section h2 { color: var(--primary); margin-bottom: 1rem; font-size: 1.4rem; }
-
-    /* Blog Cards */
-    .blog-card {
-      background: var(--bg);
-      padding: 1.5rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 1.5rem;
-      transition: transform var(--transition);
-    }
-    .blog-card:hover { transform: translateY(-5px); }
-    .blog-card h3 { color: var(--primary); margin-top: 0; }
-    .blog-card p { margin: 0.5rem 0; }
 
     footer {
       background: var(--card);
@@ -178,173 +137,97 @@
       padding: 1rem;
       font-size: 0.9rem;
       border-top: 1px solid #eee;
-      box-shadow: var(--shadow);
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      header { flex-direction: column; align-items: flex-start; }
-      nav ul { justify-content: flex-start; gap: 0.8rem; flex-wrap: wrap; }
-    }
-
-    @media (max-width: 600px) {
-      body { font-size: 0.95rem; }
-      nav ul { justify-content: center; }
-      .button-row { flex-direction: column; }
-      .blog-card { padding: 1.2rem; }
     }
   </style>
 </head>
+
 <body>
-  <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-6005875096688030">
-</amp-auto-ads>
-  <header>
-    <h1>Digital AI Prompt Generator</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#privacy">Privacy</a></li>
-        <li><a href="#terms">Terms</a></li>
-        <li><a href="#blog">Blog</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Generator -->
-  <main id="home">
-    <div class="generator-card">
-      <h2>Generate Creative Prompts Instantly</h2>
-      <div class="input-area">
-        <input id="seedInput" type="text" placeholder="Enter an idea or leave blank..." />
-        <button id="generateBtn">Generate Prompt</button>
-      </div>
+<header>
+  <h1>Digital AI Prompt Generator</h1>
+</header>
 
-      <div id="outputCard" class="output-card">
-        <pre id="promptOutput"></pre>
-        <div class="button-row">
-          <button id="copyBtn">Copy</button>
-          <button id="downloadBtn">Download</button>
-        </div>
+<main>
+  <div class="generator-card">
+    <h2>Generate Creative Prompts Instantly</h2>
+
+    <div class="input-area">
+      <input id="seedInput" type="text" placeholder="Enter an idea or leave blank..." />
+      <button id="generateBtn">Generate Prompt</button>
+    </div>
+
+    <div id="outputCard" class="output-card">
+      <pre id="promptOutput"></pre>
+
+      <div class="button-row">
+        <button id="copyBtn">Copy</button>
+        <button id="downloadBtn">Download</button>
       </div>
     </div>
-  </main>
+  </div>
+</main>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p><strong>Digital AI Prompt Generator</strong> helps creators, students, and writers instantly come up with new ideas. This tool runs completely in your browser using only HTML, CSS, and JavaScript — no server, no tracking, and no data storage.</p>
-  </section>
+<footer>
+  © 2025 Digital AI Prompt Generator
+</footer>
 
-  <!-- Privacy -->
-  <section id="privacy">
-    <h2>Privacy Policy</h2>
-    <p>We value your privacy. <strong>Digital AI Prompt Generator</strong> does not store or share any data. All processing happens locally on your device. You stay 100% in control of your creative ideas.</p>
-    <p>For any questions, email: <a href="mailto:contact@digitalaipromptgenrator.com">contact@digitalaipromptgenrator.com</a></p>
-  </section>
+<div id="toast" class="toast">Copied to clipboard!</div>
 
-  <!-- Terms -->
-  <section id="terms">
-    <h2>Terms & Conditions</h2>
-    <p>By using <strong>Digital AI Prompt Generator</strong>, you agree to use it for personal and educational purposes. The website provides prompts for inspiration only and does not guarantee accuracy or suitability for commercial use.</p>
-  </section>
+<script>
+const names = ["Aarav","Maya","Lina","Eli","Nia","Theo","Zara","Ravi","Amara","Luca"];
+const backgrounds = [
+  "is a writer exploring futuristic technology.",
+  "is an artist fascinated by human emotions.",
+  "is a student learning how creativity works.",
+  "is a designer inspired by nature’s patterns.",
+  "is a game developer who loves storytelling."
+];
+const actions = [
+  "Right now they’re writing new ideas in a notebook.",
+  "They’re designing a unique project in their studio.",
+  "Currently brainstorming a story with friends.",
+  "They’re coding something amazing tonight.",
+  "Right now they’re sketching their next big idea."
+];
 
-  <!-- Blog -->
-  <section id="blog">
-    <h2>Our Blog</h2>
+const generateBtn = document.getElementById("generateBtn");
+const outputCard = document.getElementById("outputCard");
+const promptOutput = document.getElementById("promptOutput");
+const copyBtn = document.getElementById("copyBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const toast = document.getElementById("toast");
 
-    <div class="blog-card">
-      <h3> Why We Love AI Prompt Generators (And Why They’ll Never Replace Humans)</h3>
-      <p>AI prompt generators don’t replace creativity — they ignite it. Think of them as creative friends who help you start, not finish.</p>
-      <p><strong>Tags:</strong> #HumanCreativity #AI #Inspiration</p>
-    </div>
+function random(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
+}
 
-    <div class="blog-card">
-      <h3>✨ 5 Beautiful Ways to Use an AI Prompt Generator</h3>
-      <p>From writing captions to brainstorming ideas — AI prompts are your daily creativity boosters that make your imagination shine.</p>
-      <p><strong>Tags:</strong> #EverydayAI #Creativity #LifeWithAI</p>
-    </div>
+generateBtn.onclick = () => {
+  const seed = document.getElementById("seedInput").value.trim();
+  const name = random(names);
+  const prompt =
+`Name: ${name}
+Background: ${name} ${random(backgrounds)}
+Foreground: ${random(actions)}
+${seed ? "Idea: " + seed : ""}`;
 
-    <div class="blog-card">
-      <h3>️ How Using AI Prompts Can Make You a Better Writer</h3>
-      <p>Good writing begins with one idea. AI prompts help you take that first step — and soon, your own words take over.</p>
-      <p><strong>Tags:</strong> #WritingJourney #AI #Growth</p>
-    </div>
+  promptOutput.textContent = prompt;
+  outputCard.style.display = "block";
+};
 
-    <div class="blog-card">
-      <h3>🧩 How We Built “Digital AI Prompt Generator” Without Any AI</h3>
-      <p>Yes, this website uses no real AI — just simple HTML, CSS, and JavaScript blended to feel human and creative.</p>
-      <p><strong>Tags:</strong> #CodingWithHeart #WebDesign #SimpleAI</p>
-    </div>
+copyBtn.onclick = () => {
+  navigator.clipboard.writeText(promptOutput.textContent);
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),1500);
+};
 
-    <div class="blog-card">
-      <h3> The Future of Creativity: Humans + AI, Side by Side</h3>
-      <p>The next generation of art and ideas will come from humans and AI working together — not competing, but collaborating.</p>
-      <p><strong>Tags:</strong> #FutureOfAI #HumanTouch #Creativity</p>
-    </div>
-  </section>
+downloadBtn.onclick = () => {
+  const blob = new Blob([promptOutput.textContent], {type:"text/plain"});
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "prompt.txt";
+  link.click();
+};
+</script>
 
-  <footer>
-    © 2025 Digital AI Prompt Generator | <a href="#privacy">Privacy</a> | <a href="#terms">Terms</a>
-  </footer>
-
-  <div id="toast" class="toast">Copied to clipboard!</div>
-
-  <script>
-    // === PROMPT GENERATOR LOGIC ===
-    const names = ["Aarav", "Maya", "Lina", "Eli", "Nia", "Theo", "Zara", "Ravi", "Amara", "Luca"];
-    const backgrounds = [
-      "is a writer exploring futuristic technology.",
-      "is an artist fascinated by human emotions.",
-      "is a student learning how creativity works.",
-      "is a designer inspired by nature’s patterns.",
-      "is a game developer who loves storytelling."
-    ];
-    const actions = [
-      "Right now they’re writing new ideas in a notebook.",
-      "They’re designing a unique project in their studio.",
-      "Currently brainstorming a story with friends.",
-      "They’re coding something amazing tonight.",
-      "Right now they’re sketching their next big idea."
-    ];
-
-    const generateBtn = document.getElementById("generateBtn");
-    const outputCard = document.getElementById("outputCard");
-    const promptOutput = document.getElementById("promptOutput");
-    const copyBtn = document.getElementById("copyBtn");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const toast = document.getElementById("toast");
-
-    function random(arr) {
-      return arr[Math.floor(Math.random() * arr.length)];
-    }
-
-    generateBtn.addEventListener("click", () => {
-      const seed = document.getElementById("seedInput").value.trim();
-      const name = random(names);
-      const bg = random(backgrounds);
-      const act = random(actions);
-      const prompt = `Name: ${name}\nBackground: ${name} ${bg}\nForeground: ${act}\n${seed ? "Idea: " + seed : ""}`;
-      promptOutput.textContent = prompt;
-      outputCard.style.display = "block";
-    });
-
-    copyBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(promptOutput.textContent);
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 1500);
-    });
-
-    downloadBtn.addEventListener("click", () => {
-      const blob = new Blob([promptOutput.textContent], { type: "text/plain" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "prompt.txt";
-      link.click();
-    });
-  </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6005875096688030"
-     crossorigin="anonymous"></script>
 </body>
 </html>
